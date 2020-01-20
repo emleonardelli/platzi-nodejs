@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const router = express.Router()
+const response = require('./network/response')
 
 var app = express()
 app.use(bodyParser.json())
@@ -12,16 +13,16 @@ router.get('/message', (req, res) => {
   res.header({
     'custom-header' : 'Nuestro valor personalizado'
   })
-  res.send('Hola desde GET nuevo')
+  response.success(req, res, 'Lista de mensajes')
 })
 
 router.post('/message', (req, res) => {
   console.log(req.query)
-  //?orderBy=id&age=25
-  console.log(req.body)
-  res.status(201).send({
-    error: '', body: 'Creado correctamente'
-  })
+  if (req.query.error == 'ok'){
+    response.error(req, res, 'Error simulado', 400)
+  }else{
+    response.success(req, res, 'Creado correctamente', 201)
+  }
 })
 
 app.listen(3000)
