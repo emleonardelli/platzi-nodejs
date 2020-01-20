@@ -7,15 +7,21 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(router)
 
-router.get('/', (req, res) => {
+router.get('/message', (req, res) => {
+  console.log(req.headers)
+  res.header({
+    'custom-header' : 'Nuestro valor personalizado'
+  })
   res.send('Hola desde GET nuevo')
 })
 
-router.post('/', (req, res) => {
+router.post('/message', (req, res) => {
   console.log(req.query)
   //?orderBy=id&age=25
   console.log(req.body)
-  res.send('Hola desde POST')
+  res.status(201).send({
+    error: '', body: 'Creado correctamente'
+  })
 })
 
 app.listen(3000)
