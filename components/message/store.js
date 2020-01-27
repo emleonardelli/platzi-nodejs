@@ -1,21 +1,4 @@
-const db = require('mongoose')
 const Model = require('./model')
-
-const {
-  DB_USER,
-  DB_PASSWD,
-  DB_HOST,
-  DB_PORT,
-  DB_NAME
-} = process.env
-
-const mongoUrl = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
-db.Promise = global.Promise
-db.connect(mongoUrl, {
-  useNewUrlParser: true
-})
-
-console.log('[DB] Conectada con exito')
 
 function addMessage(message){
   //list.push(message)
