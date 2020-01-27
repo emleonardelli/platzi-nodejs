@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 const mySchema = new schema({
-  user: String,
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  },
   message: {
     type: String,
     required: true
