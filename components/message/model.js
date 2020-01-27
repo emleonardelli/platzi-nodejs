@@ -9,3 +9,6 @@ const mySchema = new schema({
   date: Date
 })
 
+const model = mongoose.model('Message', mySchema)
+module.exports = model
+
