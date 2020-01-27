@@ -3,7 +3,7 @@ const store = require('./store')
 function addUser(name) {
   return new Promise((resolve, reject) => {
     if (!name) {
-      console.error('[Message Controller] Falta el usuario')
+      console.error('[User Controller] Falta el usuario')
       reject('Los datos son incorrectos')
       return false
     }

@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
       response.success(req, res, userList, 200)
     })
     .catch(e => {
-      response.error(req, res, 'Unexpected error', 500, 'e')
+      response.error(req, res, 'Unexpected error', 500, e)
     })
 })
 
