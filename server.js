@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const db = require('./db')
 db()
@@ -17,6 +18,7 @@ socket.connect(server)
 
 router(app)
 
+app.use(cors())
 app.use('/app', express.static('public'))
 
 server.listen(3000, () => {
