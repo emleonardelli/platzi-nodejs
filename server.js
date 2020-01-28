@@ -1,21 +1,24 @@
 require('dotenv').config()
-
 const express = require('express')
-const bodyParser = require('body-parser')
+const app = express()
+const server = require('http').Server(app)
 
+const bodyParser = require('body-parser')
 const db = require('./db')
 db()
-
 const router = require('./network/routes')
+const socket = require('./socket')
 
-var app = express()
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
+socket.connect(server)
 
 router(app)
 
 app.use('/app', express.static('public'))
 
-app.listen(3000)
-
-console.log('La APP esta escuchando en http://localhost:3000')
+server.listen(3000, () => {
+  console.log('La APP esta escuchando en http://localhost:3000')
+})
